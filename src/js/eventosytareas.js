@@ -67,20 +67,21 @@ function editarTarea(indice) {
     let editarPrioridad = document.getElementById("inp-editar-prioridad");
     let btnActualizar = document.getElementById("bnt-actualizar");
 
-    editarInput.style.display = "block";
-    editarPrioridad.style.display = "block";
-    btnActualizar.style.display = "block";
+    editarInput.style.display = "inline";
+    editarPrioridad.style.display = "inline";
+    btnActualizar.style.display = "inline";
+
 
     editarInput.value = listaDeTareas[indice].nombre;
     editarPrioridad.value = listaDeTareas[indice].prioridad;
 
-    btnActualizar.removeEventListener("click", actualizarHandler);
+    btnActualizar.removeEventListener("click", manejoActualizacion)
     
-    function actualizarHandler() {
-        ConfirmarEdicion();
+    function manejoActualizacion() {
+        ConfirmarEdicion()
     }
     
-    btnActualizar.addEventListener("click", actualizarHandler);
+    btnActualizar.addEventListener("click", manejoActualizacion)
 }
 
 function ConfirmarEdicion() {
