@@ -7,18 +7,20 @@
 </head>
 <body>
 
-    <button id="btn-agregar"> Agreagar </button>
-    <button id="bnt-editar"> Editar </button>
+    <h1>tareas</h1>
+    
+    <input type="text"  placeholder= "Tarea"  id="inp-agg-tarea">
+    <input type="text" placeholder= "Prioridad" id="inp-agg-prioridad">
+    <button id="btn-agregar"> Agregar</button>
+    
+    <ul     
+    id="contenedorDeTareas">      
+    </ul>
 
-
-<input  placeholder= "Tarea"type="text" id="inp-edita-tarea">
-<input placeholder="Prioridad"type="text" id="inp-edita-prioridad">
-
-
-<ul 
-id="contenedor">
-</ul>
-
+    <input type="text"  placeholder= "Edita la tarea"  id="inp-editar-tarea" style="display: none;">
+    <input type="text" placeholder= "Edita la prioridad" id="inp-editar-prioridad" style="display: none;">
+    <button id="bnt-actualizar" style="display: none;"> Actualizar </button>
+    
 
 </body>
 <script src="/src/js/eventosytareas.js"></script>

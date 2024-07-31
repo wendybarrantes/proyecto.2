@@ -1,75 +1,119 @@
-let btn1 = document.getElementById("btn-agregar")
-let bnt2 = document.getElementById("bnt-editar")
+alert("holaa")
+let btnAgg = document.getElementById("btn-agregar")
+let btnActualizar = document.getElementById("bnt-actualizar")
+let listaDeTareas= JSON.parse(localStorage.getItem("tareas")) || [] //variable global//
 
-let lista = JSON.parse(localStorage.getItem("tareas")) || [] //variable global//
-
-
+////////////////////////////////////////////////////////////////////////////////////
  function agregarTareas(){
-    let nombreTarea = document.getElementById("inp-tarea").value
-    let prioridadTarea = document.getElementById("inp-prioridad").value
+    let nombreTarea = document.getElementById("inp-agg-tarea").value
+    let prioridadTarea = document.getElementById("inp-agg-prioridad").value
 
-    //objeto//
+    //creo un objeto para guardar los valores de los objetos//
     let tarea = {
-        nombre: nombreTarea,
-        prioridad: prioridadTarea
+        nombre:nombreTarea,
+        prioridad:prioridadTarea
     }
-    lista.push(tarea)
-    localStorage.setItem("tareas",JSON.stringify(lista))
-}
+    //le hago un push (enviar datos) a la lista global, la cual contiene todas las tareas.
+    listaDeTareas.push(tarea)
 
-function mostrarTareas() {
-    let contenedorDeTareas = document.getElementById("contenedor")
-    contenedorDeTareas.innerHTML= "" 
-    lista.forEach((tarea,indice)=>{
-    let li = document.createElement("li")    
-                       //interpolacion//                          
-    li.textContent = `La tarea es: ${tarea.nombre}         
-     la prioridad es: ${tarea.prioridad}`
-
-    let botonEditar = document.createElement("button")
-        botonEditar.textContent = "Editar"
-        botonEditar.addEventListener("click", ()=>editarTarea(indice))
-
-    let botonEliminar = document.createElement("button")
-        botonEliminar.textContent = "Eliminar"
-        botonEliminar.addEventListener("click",()=>eliminarTarea(indice))
-
-    li.appendChild(botonEditar)
-    li.appendChild(botonEliminar)
-    contenedorDeTareas.appendChild(li)
-    })
-}
-
-function eliminarTarea(indice){
-    lista.splice(indice,1)
-    localStorage.setItem("tareas",JSON.stringify(lista))  //PREGUNTAR//
+    //guardo en el Local Storage la tarea//
+    localStorage.setItem("tareas",JSON.stringify(listaDeTareas))
     mostrarTareas()
 }
 
-function editarTarea(indice){
-let editarInput = document.getElementByI("inp-edita-tarea")
-let editarPrioridad = documen("inp-edita-prioridad")
+    ////////////////////////////////////////////////////////////////////////////////////
 
-editarInput.style.stile="block"  //PREGUNTAR//
-editarPrioridad.style.stile="block"
-botonEditar.style.stile="block"
+function mostrarTareas() {
+    //Referencio el ul del HTML en el que se iran guardando visualmente las tareas.
+    let contenedorDeTareas = document.getElementById("contenedorDeTareas")
+        contenedorDeTareas.innerHTML = ""
+    //Recorro la lista global para iterar cada una de las tareas.
+    listaDeTareas.forEach((tarea, indice)=>{
+    let li = document.createElement("li")
+        li.textContent = `La tarea es: ${tarea.nombre} prioridad:${tarea.prioridad}`
+        
+    let botonEditar = document.createElement("button")
+        botonEditar.textContent = "EditarS"
+        botonEditar.addEventListener("click",()=>{
+            editarTarea(indice)
+        })
 
-editarInput.value = lista(indice).nombre
-editarPrioridad.value = lista(indice).prioridad
+    let botonEliminar = document.createElement("button")
+        botonEliminar.textContent = "Eliminar"
+        botonEliminar.addEventListener("click",()=> eliminarTarea(indice))
 
-botonEditar.addEventListener("click",()=>ConfirmarEdicion(indice))
+        li.appendChild(botonEditar)
+        li.appendChild(botonEliminar)
+        contenedorDeTareas.appendChild(li)
+    })
 }
 
-function ConfirmarEdicion(indice){
+//////////////////////////////////////////////////////////////////////////////////////
 
+function eliminarTarea(indice) {
+    listaDeTareas.splice(indice,1)
+    localStorage.setItem("tareas",JSON.stringify(listaDeTareas))
+    mostrarTareas() 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
 
+let tareaEnEdicion = null;
 
+function editarTarea(indice) {
+    tareaEnEdicion = indice;
+    
+    let editarInput = document.getElementById("inp-editar-tarea");
+    let editarPrioridad = document.getElementById("inp-editar-prioridad");
+    let btnActualizar = document.getElementById("bnt-actualizar");
 
+    editarInput.style.display = "block";
+    editarPrioridad.style.display = "block";
+    btnActualizar.style.display = "block";
+
+    editarInput.value = listaDeTareas[indice].nombre;
+    editarPrioridad.value = listaDeTareas[indice].prioridad;
+
+    btnActualizar.removeEventListener("click", actualizarHandler);
+    
+    function actualizarHandler() {
+        ConfirmarEdicion();
+    }
+    
+    btnActualizar.addEventListener("click", actualizarHandler);
+}
+
+function ConfirmarEdicion() {
+    let editarInput = document.getElementById("inp-editar-tarea").value;
+    let editarPrioridad = document.getElementById("inp-editar-prioridad").value;
+
+    listaDeTareas[tareaEnEdicion] = {
+        nombre: editarInput,
+        prioridad: editarPrioridad
+    };
+
+    localStorage.setItem("tareas", JSON.stringify(listaDeTareas));
+
+    let editarInputElemento = document.getElementById("inp-editar-tarea");
+    let editarPrioridadElemento = document.getElementById("inp-editar-prioridad");
+    let btnActualizar = document.getElementById("bnt-actualizar");
+
+    editarInputElemento.style.display = "none";
+    editarPrioridadElemento.style.display = "none";
+    btnActualizar.style.display = "none";
+
+    mostrarTareas();
+}
 
 mostrarTareas()
-btn1.addEventListener("click",agregarTareas)
+btnAgg.addEventListener("click", agregarTareas)
 
+
+
+
+
+
+
+    
 
 
