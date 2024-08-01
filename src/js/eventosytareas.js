@@ -154,7 +154,7 @@ function mostrarEventos() {
         
         li.appendChild(botonEditarEvento)
         li.appendChild(botonEliminarEvento)
-        contenedorDeTareas.appendChild(li)
+        contenedorDeEventos.appendChild(li)
         })
         }
 
@@ -187,7 +187,7 @@ function editarEvento(indice) {
     btnActualizarEvento.removeEventListener("click", manejoActualizacion)
         
 function manejoActualizacion() {
-    ConfirmarEdicion()
+    ConfirmarEdicionEvento()
     }
         
     btnActualizarEvento.addEventListener("click", manejoActualizacion)
@@ -201,7 +201,7 @@ function ConfirmarEdicionEvento() {
     
     listaDeEventos[eventoEnEdicion] = {
         nombre: editarInputEvento,
-        prioridad: editarFecha
+        fecha: editarFecha
     };
     
     localStorage.setItem("eventos", JSON.stringify(listaDeEventos));
