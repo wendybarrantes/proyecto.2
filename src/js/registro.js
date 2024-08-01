@@ -5,6 +5,7 @@ let inspeccion = false
 
 function crearUsuario(evento) {
     evento.preventDefault()
+    
    let inpClave = document.getElementById("inp-contrasena-Cuenta").value
    let inpCorreo = document.getElementById("inp-correo-cuenta").value
 

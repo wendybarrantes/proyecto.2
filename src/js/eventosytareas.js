@@ -8,7 +8,10 @@ let listaDeTareas= JSON.parse(localStorage.getItem("tareas")) || [] //variable g
     let nombreTarea = document.getElementById("inp-agg-tarea").value
     let prioridadTarea = document.getElementById("inp-agg-prioridad").value
 
-    //creo un objeto para guardar los valores de los objetos//
+    let nombreTareaElemento = document.getElementById("inp-agg-tarea")
+    let prioridadTareaElemento = document.getElementById("inp-agg-prioridad")
+
+    //creo un objeto para guardar los valores de los tareas//
     let tarea = {
         nombre:nombreTarea,
         prioridad:prioridadTarea
@@ -18,6 +21,8 @@ let listaDeTareas= JSON.parse(localStorage.getItem("tareas")) || [] //variable g
 
     //guardo en el Local Storage la tarea//
     localStorage.setItem("tareas",JSON.stringify(listaDeTareas))
+    nombreTareaElemento.value = ""
+    prioridadTareaElemento.value = ""
     mostrarTareas()
 }
 
@@ -123,6 +128,9 @@ function agregarEventos(){
     let nombreEvento= document.getElementById("inp-agg-evento").value
     let FechaEvento = document.getElementById("inp-agg-fecha").value
 
+    let nombreEventoElemento= document.getElementById("inp-agg-evento")
+    let FechaEventoElemento = document.getElementById("inp-agg-fecha")
+
     let evento = {
         nombre:nombreEvento,
         fecha:FechaEvento
@@ -130,6 +138,8 @@ function agregarEventos(){
     listaDeEventos.push(evento)
 
     localStorage.setItem("eventos",JSON.stringify(listaDeEventos))
+    nombreEventoElemento.value=""
+    FechaEventoElemento.value=""
     mostrarEventos()
 }
 
@@ -144,14 +154,14 @@ function mostrarEventos() {
         li.textContent = `El evento es:${evento.nombre} fecha:${evento.fecha}`
                 
     let botonEditarEvento = document.createElement("button")
-        botonEditarEvento.textContent = "EditarE"
+        botonEditarEvento.textContent = "Editar"
         botonEditarEvento.addEventListener("click",()=>{
         editarEvento(indice)
         })
         botonEditarEvento.style.marginLeft="200px"
         botonEditarEvento.style.marginRight="20px"
     let botonEliminarEvento = document.createElement("button")
-        botonEliminarEvento.textContent = "EliminarE"
+        botonEliminarEvento.textContent = "Eliminar"
         botonEliminarEvento.addEventListener("click",()=> eliminarEvento(indice))
         
         li.appendChild(botonEditarEvento)
