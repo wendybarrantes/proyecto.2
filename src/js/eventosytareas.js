@@ -71,7 +71,6 @@ function editarTarea(indice) {
     editarPrioridad.style.display = "inline";
     btnActualizar.style.display = "inline";
 
-
     editarInput.value = listaDeTareas[indice].nombre;
     editarPrioridad.value = listaDeTareas[indice].prioridad;
 
@@ -83,6 +82,8 @@ function editarTarea(indice) {
     
     btnActualizar.addEventListener("click", manejoActualizacion)
 }
+
+//////////////////////////////////////////////////////////////////////////
 
 function ConfirmarEdicion() {
     let editarInput = document.getElementById("inp-editar-tarea").value;
@@ -105,9 +106,127 @@ function ConfirmarEdicion() {
 
     mostrarTareas();
 }
-
 mostrarTareas()
 btnAgg.addEventListener("click", agregarTareas)
+
+
+//EVENTOS//
+
+let btnAggEvento = document.getElementById("btn-agregar-evento")
+let btnActualizarEvento = document.getElementById("bnt-actualizar-evento")
+let listaDeEventos= JSON.parse(localStorage.getItem("eventos")) || [] //variable global//
+
+//////////////////////////////////////////////////////////////////////////////////
+
+function agregarEventos(){
+    let nombreEvento= document.getElementById("inp-agg-evento").value
+    let FechaEvento = document.getElementById("inp-agg-fecha").value
+
+    let evento = {
+        nombre:nombreEvento,
+        fecha:FechaEvento
+    }
+    listaDeEventos.push(evento)
+
+    localStorage.setItem("eventos",JSON.stringify(listaDeEventos))
+    mostrarEventos()
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+function mostrarEventos() {
+    let contenedorDeEventos = document.getElementById("contenedorDeEventos")
+        contenedorDeEventos.innerHTML = ""
+
+        listaDeEventos.forEach((evento, indice)=>{
+    let li = document.createElement("li")
+        li.textContent = `El evento es:${evento.nombre} fecha:${evento.fecha}`
+                
+    let botonEditarEvento = document.createElement("button")
+        botonEditarEvento.textContent = "EditarE"
+        botonEditarEvento.addEventListener("click",()=>{
+        editarEvento(indice)
+        })
+        
+    let botonEliminarEvento = document.createElement("button")
+        botonEliminarEvento.textContent = "EliminarE"
+        botonEliminarEvento.addEventListener("click",()=> eliminarEvento(indice))
+        
+        li.appendChild(botonEditarEvento)
+        li.appendChild(botonEliminarEvento)
+        contenedorDeTareas.appendChild(li)
+        })
+        }
+
+     /////////////////////////////////////////////////////////////////////////////////      
+        
+function eliminarEvento(indice) {
+    listaDeEventos.splice(indice,1)
+    localStorage.setItem("eventos",JSON.stringify(listaDeEventos))
+    mostrarEventos() 
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////
+        
+    let eventoEnEdicion = null;
+
+function editarEvento(indice) {
+    eventoEnEdicion = indice;
+        
+    let editarInputEvento = document.getElementById("inp-editar-evento");
+    let editarFecha = document.getElementById("inp-editar-fecha");
+    let btnActualizarEvento = document.getElementById("bnt-actualizar-evento");
+    
+    editarInputEvento.style.display = "inline";
+    editarFecha.style.display = "inline";
+    btnActualizarEvento.style.display = "inline";
+    
+    editarInputEvento.value = listaDeEventos[indice].nombre;
+    editarFecha.value = listaDeEventos[indice].fecha;
+    
+    btnActualizarEvento.removeEventListener("click", manejoActualizacion)
+        
+function manejoActualizacion() {
+    ConfirmarEdicion()
+    }
+        
+    btnActualizarEvento.addEventListener("click", manejoActualizacion)
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+
+function ConfirmarEdicionEvento() {
+    let editarInputEvento = document.getElementById("inp-editar-evento").value;
+    let editarFecha = document.getElementById("inp-editar-fecha").value;
+    
+    listaDeEventos[eventoEnEdicion] = {
+        nombre: editarInputEvento,
+        prioridad: editarFecha
+    };
+    
+    localStorage.setItem("eventos", JSON.stringify(listaDeEventos));
+    
+    let editarInputEventoElemento = document.getElementById("inp-editar-evento");
+    let editarFechaElemento = document.getElementById("inp-editar-fecha");
+    let btnActualizarEvento = document.getElementById("bnt-actualizar-evento");
+    
+        editarInputEventoElemento.style.display = "none";
+        editarFechaElemento.style.display = "none";
+        btnActualizarEvento.style.display = "none";
+    
+        mostrarEventos();
+    }
+    mostrarEventos()
+    btnAggEvento.addEventListener("click", agregarEventos)
+    
+     
+    
+
+
+
+
+    
+
 
 
 
