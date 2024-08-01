@@ -3,40 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eventos y tareas</title>
+    <title>Eventos y Tareas</title>
+    <link rel="stylesheet" href="/src/css/eventosytareas.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Columna de Tareas -->
+        <div class="tareas-col">
+            <h1>Tareas</h1>
+            <div class="todo-tareas">
+                
+                    <input type="text" placeholder="Tarea" id="inp-agg-tarea">
+                    <input type="text" placeholder="Prioridad" id="inp-agg-prioridad">
+                    <button id="btn-agregar">Agregar</button>
+            
 
-    <h1>tareas</h1>
-    
-    <input type="text"  placeholder= "Tarea"  id="inp-agg-tarea">
-    <input type="text" placeholder= "Prioridad" id="inp-agg-prioridad">
-    <button id="btn-agregar"> Agregar</button>
-    
-    <ul     
-    id="contenedorDeTareas">      
-    </ul>
+                <ul id="contenedorDeTareas"></ul>
+                
 
-    <input type="text"  placeholder= "Edita la tarea"  id="inp-editar-tarea" style="display: none;">
-    <input type="text" placeholder= "Edita la prioridad" id="inp-editar-prioridad" style="display: none;">
-    <button id="bnt-actualizar" style="display: none;"> Actualizar </button>
-    
+                <input type="text" placeholder="Edita la tarea" id="inp-editar-tarea" style="display: none;">
+                <input type="text" placeholder="Edita la prioridad" id="inp-editar-prioridad" style="display: none;">
+                <button id="bnt-actualizar" style="display: none;">Actualizar</button>
+            </div>
+        </div>
 
-    <h1>eventos</h1>
+        <!-- Columna de Eventos -->
+        <div class="eventos-col">
+            <h1>Eventos</h1>
+            <div class="eventos-lista">
+                <input type="text" placeholder="Evento" id="inp-agg-evento">
+                <input type="text" placeholder="Fecha" id="inp-agg-fecha">
+                <button id="btn-agregar-evento">Agregar</button>
 
-    <input type="text"  placeholder= "Evento"  id="inp-agg-evento">
-    <input type="text" placeholder= "fecha" id="inp-agg-fecha">
-    <button id="btn-agregar-evento"> Agregar</button>
+                <ul id="contenedorDeEventos"></ul>
 
-    <ul     
-    id="contenedorDeEventos">      
-    </ul>
-
-    <input type="text"  placeholder= "Edita el evento"  id= "inp-editar-evento" style="display: none;">
-    <input type="text" placeholder= "Edita la fecha" id="inp-editar-fecha" style="display: none;">
-    <button id="bnt-actualizar-evento" style="display: none;"> Actualizar </button>
-
-
+                <input type="text" placeholder="Edita el evento" id="inp-editar-evento" style="display: none;">
+                <input type="text" placeholder="Edita la fecha" id="inp-editar-fecha" style="display: none;">
+                <button id="bnt-actualizar-evento" style="display: none;">Actualizar</button>
+            </div>
+        </div>
+    </div>
+<div class="boton">
+<a href="iniciosesion.html"> ir al inicio de sesión</a>
+</div>
+    <script src="/src/js/eventosytareas.js"></script>
 </body>
-<script src="/src/js/eventosytareas.js"></script>
 </html>

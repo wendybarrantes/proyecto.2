@@ -33,11 +33,12 @@ function mostrarTareas() {
         li.textContent = `La tarea es: ${tarea.nombre} prioridad:${tarea.prioridad}`
         
     let botonEditar = document.createElement("button")
-        botonEditar.textContent = "EditarS"
+        botonEditar.textContent = "Editar"
         botonEditar.addEventListener("click",()=>{
             editarTarea(indice)
         })
-
+botonEditar.style.marginLeft="200px"
+botonEditar.style.marginRight="20px"
     let botonEliminar = document.createElement("button")
         botonEliminar.textContent = "Eliminar"
         botonEliminar.addEventListener("click",()=> eliminarTarea(indice))
@@ -147,7 +148,8 @@ function mostrarEventos() {
         botonEditarEvento.addEventListener("click",()=>{
         editarEvento(indice)
         })
-        
+        botonEditarEvento.style.marginLeft="200px"
+        botonEditarEvento.style.marginRight="20px"
     let botonEliminarEvento = document.createElement("button")
         botonEliminarEvento.textContent = "EliminarE"
         botonEliminarEvento.addEventListener("click",()=> eliminarEvento(indice))
