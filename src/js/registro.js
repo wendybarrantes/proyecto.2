@@ -26,6 +26,7 @@ function crearUsuario(evento) {
     usuarios.push(usuario)
     localStorage.setItem("usuarios",JSON.stringify(usuarios))
     alert("usuario creado")
+    window.location.href= "iniciosesion.html"
    }
 }
 btnCrearCuenta.addEventListener("click", crearUsuario)

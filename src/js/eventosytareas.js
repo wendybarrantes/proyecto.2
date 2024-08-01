@@ -1,4 +1,4 @@
-alert("holaa")
+
 let btnAgg = document.getElementById("btn-agregar")
 let btnActualizar = document.getElementById("bnt-actualizar")
 let listaDeTareas= JSON.parse(localStorage.getItem("tareas")) || [] //variable global//
